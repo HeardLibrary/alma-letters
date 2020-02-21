@@ -2,7 +2,6 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:include href="header.xsl" />
   <xsl:include href="senderReceiver.xsl" />
-  <xsl:include href="mailReason.xsl" />
   <xsl:include href="footer.xsl" />
   <xsl:include href="style.xsl" />
 
@@ -10,6 +9,7 @@
   <xsl:variable name="stepType" select="/notification_data/request/work_flow_entity/step_type" />
   <xsl:variable name="externalRequestId" select="/notification_data/external_request_id" />
   <xsl:variable name="externalSystem" select="/notification_data/external_system" />
+  <xsl:variable name="vendorName" select="/notification_data/receivers/receiver/vendor/name"/> 
 
   <xsl:template match="/">
     <html>
@@ -18,27 +18,25 @@
       </head>
       <body>
         <xsl:attribute name="style">
-          <xsl:call-template name="bodyStyleCss" />
-          <!-- style.xsl -->
+          <xsl:call-template name="bodyStyleCss" />         <!-- style.xsl -->
         </xsl:attribute>
-        <xsl:call-template name="head" />
-        <!-- header.xsl -->
-        <xsl:call-template name="senderReceiver" />
-        	<!-- <xsl:call-template name="toWhomIsConcerned" />  -->  <!-- mailReason.xsl -->
+        <xsl:call-template name="head" />       <!-- header.xsl -->
+        <xsl:call-template name="acqSenderVendor" />
+   
         <div class="messageArea">
           <div class="messageBody">
             <table cellspacing="0" cellpadding="5" border="0">
 					<xsl:choose>
  						<xsl:when test="notification_data/claim/claim_type='ELECTRONIC' ">
 							<tr>
-								<td>@@attached_information_activated@@.<br />
+								<td>@@attached_information_activated@@<br />
 								</td>
 							</tr>
 						</xsl:when>
 						<xsl:otherwise>
 							<tr>
-								<td>@@attached_information_regarding@@.<br />
-								@@please_supply@@.
+								<td>@@attached_information_regarding@@<br />
+								@@please_supply@@
 								</td>
 							</tr>
 						</xsl:otherwise>
@@ -66,8 +64,8 @@
 							<br />
 							<strong>@@vendor_ref_num@@:</strong>&#160;<xsl:value-of select="vendor_refernce_number" />
 							<br />
-							<strong>@@delivery_type@@:</strong>&#160;<xsl:value-of select="shipping_method" />
-							<br />
+							<!-- <strong>@@delivery_type@@:</strong>&#160;<xsl:value-of select="shipping_method" />
+							<br />  --> 
 							<strong>@@vendor_note@@:</strong>&#160;<xsl:value-of select="vendor_note" />
 							<br />
 							<xsl:choose>
