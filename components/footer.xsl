@@ -1,56 +1,51 @@
-xml version=1.0 encoding=utf-8
+<?xml version="1.0" encoding="utf-8"?>
 
-xslstylesheet version=1.0
-xmlnsxsl=httpwww.w3.org1999XSLTransform
+<xsl:stylesheet version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+<xsl:template name="salutation">
+</xsl:template>
 
-xsltemplate name=salutation
+<xsl:template name="contactUs">
+	<table align="left">
+	<tr>
+		<td align="left">
+			<a><xsl:attribute name="href">@@email_contact_us@@</xsl:attribute>@@contact_us@@</a>
+		</td>
+	</tr>
+	</table>
+</xsl:template>
 
-xsltemplate
+<xsl:template name="myAccount">
+	<table align="right">
+	<tr>
+		<td align="right">
+			<a><xsl:attribute name="href">@@email_my_account@@</xsl:attribute>@@my_account@@</a>
+		</td>
+	</tr>
+	</table>
+</xsl:template>
 
-xsltemplate name=contactUs
-	table align=left
-	tr
-		td align=left
-			axslattribute name=href@@email_contact_us@@xslattribute@@contact_us@@a
-		td
-	tr
-	table
-xsltemplate
-xsltemplate name=myAccount
-	table align=right
-	tr
-		td align=right
-			axslattribute name=href@@email_my_account@@xslattribute@@my_account@@a
-		td
-	tr
-	table
-xsltemplate
-
-xsltemplate name=lastFooter
-	table
-	xslattribute name=style
-		xslcall-template name=footerTableStyleCss  !-- style.xsl --
-	xslattribute
-	tr
-	xslfor-each select=notification_dataorganization_unit
-		xslattribute name=style
-			xslcall-template name=listStyleCss  !-- style.xsl --
-		xslattribute
-			td align=centerxslvalue-of select=name&#160;xslvalue-of select=line1&#160;xslvalue-of select=line2&#160;xslvalue-of select=city&#160;xslvalue-of select=postal_code&#160;xslvalue-of select=countrytd
-	xslfor-each
-	tr
-	table
-       br
+<xsl:template name="lastFooter">
+	<table>
+	<xsl:attribute name="style">
+		<xsl:call-template name="footerTableStyleCss" /> <!-- style.xsl -->
+	</xsl:attribute>
+	<tr>
+	<xsl:for-each select="notification_data/organization_unit">
+		<xsl:attribute name="style">
+			<xsl:call-template name="listStyleCss" /> <!-- style.xsl -->
+		</xsl:attribute>
+			<td align="center"><xsl:value-of select="name"/>&#160;<xsl:value-of select="line1"/>&#160;<xsl:value-of select="line2"/>&#160;<xsl:value-of select="city"/>&#160;<xsl:value-of select="postal_code"/>&#160;<xsl:value-of select="country"/></td>
+	</xsl:for-each>
+	</tr>
+	</table>
+    <br/>
 	
-	xslcall-template name=contactUs 
-	xslcall-template name=myAccount 
-       br
-	
-xsltemplate
+	<xsl:call-template name="contactUs" />
+	<xsl:call-template name="myAccount" />
+    <br/>
+</xsl:template>
 
 
-
-
-
-xslstylesheet
+</xsl:stylesheet>
