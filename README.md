@@ -16,8 +16,18 @@ The repository structure is described below.
 │   └── style.xsl
 └── XSLT templates
     ├── ConversationLetter.xsl              :Vendor letter, Acqusition converstation with vendors 
-    ├── FineFeePaymentReceiptLetter.xsl     :Patron letter, fine/fee payment receipt letter
-    ├── FulBorrowingActivitiyLetter.xsl     :Patron letter, A list of user loans, requests, fines  
-    ├── FulCancalRequestLetter.xsl          :Patron letter, Request cancel notification 
-    └── POLineClaimLetter.xsl               :Vendor letter, claim letter for not received items 
+    ├── FineFeePaymentReceiptLetter.xsl     :Patron letter, Library Paymnent Receipt 
+    ├── FulBorrowingActivitiyLetter.xsl     :Patron letter, Current Loan Summary
+    ├── FulCancalRequestLetter.xsl          :Patron letter, Request Cancellation
+    ├── FulItemChangeDueDateLetter.xsl      :Patron letter, Loan status update letter 
+    ├── FulLoanReceiptLetter.xsl          
+    ├── FulLostLoanNotificationLetter.xsl    :Patron letter, Lost Items Bill 
+    ├── FulOverDueAndLostLoanNotificationLetter.xsl  :Patron letter, Overdue Notice
+    ├── FulPlaceOnHoldShelfLetter.xsl         :Patron letter, Library item available notice
+    ├── FulShortenedDueDateLetter.xsl          
+    ├── FulUserLoansCourtesyLetter.xsl         
+    ├── InterestedInLetter.xsl                :Patron letter, Library item of interest has arrived
+    ├── OrderList.xsl         
+    ├── OrderNowLetter.xsl         
+    └── POLineClaimLetter.xsl               :Vendor letter, Order Claim
 
