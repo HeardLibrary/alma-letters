@@ -86,6 +86,8 @@
 							<br />
 							<strong>@@title@@:</strong>&#160;<xsl:value-of select="title" />
 							<br />
+							<strong>@@identifier@@:</strong>&#160;<xsl:value-of select="identifier" /> 
+							<br /> 
 							<strong>@@author@@:</strong>&#160;<xsl:value-of select="author" />
 							<br />
 							<strong>@@publication_date@@:</strong>&#160;<xsl:value-of select="publication_date" />
@@ -148,7 +150,7 @@
 				</table>
           </div>
         </div>
-        <xsl:call-template name="lastFooter" />
+        <xsl:call-template name="vendorFooter" />
         <!-- footer.xsl -->
       </body>
     </html>
