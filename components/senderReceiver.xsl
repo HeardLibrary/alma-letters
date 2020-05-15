@@ -90,11 +90,11 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 					<xsl:call-template name="listStyleCss" /> <!-- style.xsl -->
 				</xsl:attribute>
 
-				<tr><td><xsl:text>Acqusitions &amp; Eresources</xsl:text></td></tr>
+				<tr><td><xsl:text>Acquisitions &amp; Eresources</xsl:text></td></tr>
 				<tr><td><xsl:text>Suite 700 Baker Building</xsl:text></td></tr>
 				<tr><td><xsl:text>110 21st Ave. South</xsl:text></td></tr>
-				<tr><td><xsl:text>Vanderbilt Univerisity Library</xsl:text></td></tr>
-				<tr><td><xsl:text>Nashville, TN 37027</xsl:text></td></tr>
+				<tr><td><xsl:text>Vanderbilt University Library</xsl:text></td></tr>
+				<tr><td><xsl:text>Nashville, TN 370203-2408</xsl:text></td></tr>
 				<tr><td><xsl:text>USA</xsl:text></td></tr>
 			</table>	
 		</td>
