@@ -20,7 +20,17 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 			</xsl:attribute>
 
 				<xsl:call-template name="head" /> <!-- header.xsl -->
-				<xsl:call-template name="acqSenderVendor" /> <!-- SenderReceiver.xsl -->
+				<xsl:variable name="mm" select="notification_data/conversation_messages/message/message_body" />
+				<xsl:variable name="os_library">
+					<xsl:choose> 
+						<xsl:when test="contains($mm, 'Library Code: LAW')">LAW</xsl:when>
+						<xsl:otherwise>OS</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>	
+
+				<xsl:call-template name="acqSenderVendor"> <!-- SenderReceiver.xsl -->
+					<xsl:with-param name="library" select="$os_library" />
+				</xsl:call-template>		
 				<br />
 
 				<table cellspacing="0" cellpadding="5" border="0">
@@ -28,10 +38,10 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 						<td>
 							<xsl:for-each select="notification_data/conversation_messages/message">
 								<h4> Subject: <xsl:value-of select="message_subject"/> </h4><br />
-								<!-- <xsl:value-of select="message_body" disable-output-escaping="yes"/><br />  --> 
-								<xsl:call-template name="processMessage">
+								<xsl:value-of select="message_body" disable-output-escaping="yes"/><br />   
+								<!-- <xsl:call-template name="processMessage">
 									<xsl:with-param name="mBody" select="message_body" />
-								</xsl:call-template>	 
+								</xsl:call-template>	--> 
 							</xsl:for-each>
 						</td>
 					</tr>
@@ -53,10 +63,39 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template name="processMessage"> 
 	<xsl:param name="mBody" /> 
-	<xsl:for-each select="tokenize($mBody, '&lt;br&gt;')">
-		<xsl:text>line: </xsl:text>
-		<xsl:value-of select="."
-	<!-- <xsl:value-of select="$mBody" disable-output-escaping="yes" /> --> 
+	<line>
+	<xsl:call-template name="tokenize">
+    	<xsl:with-param name="text" select="mBody"/>
+    	<xsl:with-param name="elemName" select="'mBody'"/>
+    	<xsl:with-param name="sep" select="'&lt;br&gt;'" />
+	</xsl:call-template>
+    </line>
 </xsl:template>	
+
+
+<xsl:template name="tokenize">
+    <xsl:param name="text"/>
+    <xsl:param name="elemName"/>
+    <xsl:param name="sep" select="' '"/>
+    <xsl:choose>
+        <xsl:when test="contains($text, $sep)">
+            <xsl:element name="{$elemName}">
+                <xsl:value-of select="substring-before($text, $sep)"/>
+            </xsl:element>
+            <!-- recursive call -->
+            <xsl:call-template name="tokenize">
+                <xsl:with-param name="text" select="substring-after($text, $sep)" />
+                <xsl:with-param name="elemName" select="$elemName" />
+            </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:element name="{$elemName}">
+                <xsl:value-of select="$text"/>
+            </xsl:element>
+        </xsl:otherwise>
+    </xsl:choose>
+</xsl:template>
+
+<!--  idea from https://stackoverflow.com/questions/23597058/how-to-split-string-in-xml   -->
 
 </xsl:stylesheet>

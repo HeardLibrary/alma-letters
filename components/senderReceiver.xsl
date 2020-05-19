@@ -69,6 +69,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <!-- a new template for Acqusition vendor related emails --> 
 <xsl:template name="acqSenderVendor"> 
+	<xsl:param name="library" />
 	<table cellspacing="0" cellpadding="5" border="0" width="100%">
 	<tr>
 		<!-- display vendor info --> 
@@ -83,19 +84,27 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 		</xsl:if>	
 		</td>		
 
-		<!-- display sender, Acqusition Department  --> 
+		<!-- display sender, Acqusition Department or Law Library based on library param --> 
 		<td width="50%" align="right">
 			<table>
 				<xsl:attribute name="style">
 					<xsl:call-template name="listStyleCss" /> <!-- style.xsl -->
 				</xsl:attribute>
-
-				<tr><td><xsl:text>Acquisitions &amp; Eresources</xsl:text></td></tr>
-				<tr><td><xsl:text>Suite 700 Baker Building</xsl:text></td></tr>
-				<tr><td><xsl:text>110 21st Ave. South</xsl:text></td></tr>
-				<tr><td><xsl:text>Vanderbilt University Library</xsl:text></td></tr>
-				<tr><td><xsl:text>Nashville, TN 370203-2408</xsl:text></td></tr>
-				<tr><td><xsl:text>USA</xsl:text></td></tr>
+				<xsl:choose> 
+					<xsl:when test=" $library='LAW' ">
+						<tr><td>Law Library</td></tr>
+						<tr><td>XXXXX XXXX XXXX XXXXX XXXXX</td></tr> 
+					</xsl:when>	
+					<xsl:otherwise>
+						<tr><td><xsl:text>Acquisitions &amp; Eresources</xsl:text></td></tr>
+						<tr><td><xsl:text>Suite 700 Baker Building</xsl:text></td></tr>
+						<tr><td><xsl:text>110 21st Ave. South</xsl:text></td></tr>
+						<tr><td><xsl:text>Vanderbilt University Library</xsl:text></td></tr>
+						<tr><td><xsl:text>Nashville, TN 370203-2408</xsl:text></td></tr>
+						<tr><td><xsl:text>USA</xsl:text></td></tr>
+					</xsl:otherwise>
+				</xsl:choose>	
+						
 			</table>	
 		</td>
 	</tr>
