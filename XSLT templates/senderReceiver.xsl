@@ -92,8 +92,10 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				</xsl:attribute>
 				<xsl:choose> 
 					<xsl:when test=" $library='LAW' ">
-						<tr><td>Law Library</td></tr>
-						<tr><td>XXXXX XXXX XXXX XXXXX XXXXX</td></tr> 
+						<tr><td>VANDERBILT UNIVERSITY LAW  SCHOOL</td></tr>
+						<tr><td>ALYNE QUEENER MASSEY  LAW LIBRARY</td></tr>
+						<tr><td>131 21ST AVENUE SOUTH</td></tr>
+						<tr><td>NASHVILLE TN 37203-9999</td></tr> 
 					</xsl:when>	
 					<xsl:otherwise>
 						<tr><td><xsl:text>Acquisitions &amp; Eresources</xsl:text></td></tr>

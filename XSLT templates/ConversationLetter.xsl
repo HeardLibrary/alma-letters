@@ -20,16 +20,17 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 			</xsl:attribute>
 
 				<xsl:call-template name="head" /> <!-- header.xsl -->
+				<!-- getting order library --> 
 				<xsl:variable name="mm" select="notification_data/conversation_messages/message/message_body" />
-				<xsl:variable name="os_library">
+				<xsl:variable name="order_library">
 					<xsl:choose> 
 						<xsl:when test="contains($mm, 'Library Code: LAW')">LAW</xsl:when>
-						<xsl:otherwise>OS</xsl:otherwise>
+						<xsl:otherwise>AE</xsl:otherwise>
 					</xsl:choose>
 				</xsl:variable>	
 
 				<xsl:call-template name="acqSenderVendor"> <!-- SenderReceiver.xsl -->
-					<xsl:with-param name="library" select="$os_library" />
+					<xsl:with-param name="library" select="$order_library" />
 				</xsl:call-template>		
 				<br />
 
@@ -38,7 +39,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 						<td>
 							<xsl:for-each select="notification_data/conversation_messages/message">
 								<h4> Subject: <xsl:value-of select="message_subject"/> </h4><br />
-								<xsl:value-of select="message_body" disable-output-escaping="yes"/><br />   
+								<xsl:value-of select="message_body" disable-output-escaping="yes"/><br /> 
 								<!-- <xsl:call-template name="processMessage">
 									<xsl:with-param name="mBody" select="message_body" />
 								</xsl:call-template>	--> 
@@ -51,7 +52,14 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 					<tr><td>@@sincerely@@</td></tr>
 					<tr><td>@@department@@</td></tr>
                     <tr><td>
-                    	<a><xsl:attribute name="href"> mailto:@@addressFrom@@ </xsl:attribute>@@addressFrom@@</a>
+                    	<xsl:choose>
+                    		<xsl:when test=" $order_library='LAW' ">
+                    			<a><xsl:attribute name="href">mailto:joyce.mcdavid@vanderbilt.edu</xsl:attribute>joyce.mcdavid@vanderbilt.edu</a>
+                    		</xsl:when>
+                    		<xsl:otherwise>	
+                    			<a><xsl:attribute name="href"> mailto:@@addressFrom@@ </xsl:attribute>@@addressFrom@@</a>
+                    		</xsl:otherwise>
+                    	</xsl:choose>		
                     </td></tr>
 				</table>
 
@@ -60,7 +68,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	</html>
 </xsl:template>
 
-
+<!-- 
 <xsl:template name="processMessage"> 
 	<xsl:param name="mBody" /> 
 	<line>
@@ -70,8 +78,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     	<xsl:with-param name="sep" select="'&lt;br&gt;'" />
 	</xsl:call-template>
     </line>
-</xsl:template>	
-
+</xsl:template> -->	
 
 <xsl:template name="tokenize">
     <xsl:param name="text"/>
@@ -95,7 +102,6 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
         </xsl:otherwise>
     </xsl:choose>
 </xsl:template>
-
 <!--  idea from https://stackoverflow.com/questions/23597058/how-to-split-string-in-xml   -->
 
 </xsl:stylesheet>
