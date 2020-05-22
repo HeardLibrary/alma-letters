@@ -31,7 +31,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 				<xsl:call-template name="acqSenderVendor"> <!-- SenderReceiver.xsl -->
 					<xsl:with-param name="library" select="$order_library" />
-				</xsl:call-template>		
+				</xsl:call-template>	
 				<br />
 
 				<table cellspacing="0" cellpadding="5" border="0">
