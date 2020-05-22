@@ -36,6 +36,18 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				<tr><td>&#160;<xsl:value-of select="notification_data/user_for_printing/country"/></td></tr>
 			</table>
 		</xsl:when>
+		<xsl:when test="notification_data/receivers/receiver/vendor">
+			<xsl:for-each select="notification_data/receivers/receiver/vendor">
+				<table>
+					<xsl:attribute name="style">
+						<xsl:call-template name="listStyleCss" /> <!-- style.xsl -->
+					</xsl:attribute>
+					<tr>
+						<td><b><xsl:value-of select="name" /></b></td>
+					</tr>
+				</table>
+			</xsl:for-each>
+		</xsl:when>
 		<xsl:when test="notification_data/receivers/receiver/user">
 			<xsl:for-each select="notification_data/receivers/receiver/user">
 				<table>
@@ -43,7 +55,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 						<xsl:call-template name="listStyleCss" /> 
 					</xsl:attribute>
 
-					<tr><td><b><xsl:value-of select="last_name"/>&#160;<xsl:value-of select="first_name"/></b></td></tr>
+					<tr><td><b><!-- <xsl:value-of select="last_name"/>&#160;--><xsl:value-of select="first_name"/></b></td></tr>
 					<tr><td><xsl:value-of select="user_address_list/user_address/line1"/></td></tr>
 					<tr><td><xsl:value-of select="user_address_list/user_address/line2"/></td></tr>
 					<tr><td><xsl:value-of select="user_address_list/user_address/city"/>&#160;<xsl:value-of select="user_address_list/user_address/state_province"/>&#160; <xsl:value-of select="user_address_list/user_address/postal_code"/></td></tr>
@@ -51,16 +63,6 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				</table>
 			</xsl:for-each>
 		</xsl:when>
-		<xsl:when test="notification_data/receivers/receiver/vendor">
-			<table>
-				<xsl:attribute name="style">
-					<xsl:call-template name="listStyleCss" /> <!-- style.xsl -->
-				</xsl:attribute>
-				<tr>
-					<td><b><xsl:value-of select="name" /></b></td>
-				</tr>
-			</table>
-		</xsl:when>	
 		<xsl:otherwise>
 		</xsl:otherwise>
 	</xsl:choose>
