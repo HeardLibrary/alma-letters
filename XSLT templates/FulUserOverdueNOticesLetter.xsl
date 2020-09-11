@@ -24,7 +24,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 		<br />
 		<xsl:call-template name="toWhomIsConcerned" /> <!-- mailReason.xsl -->
-
+                <br/>
 
         <div class="messageArea">
           <div class="messageBody">
@@ -32,8 +32,9 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 			<table cellspacing="0" cellpadding="5" border="0">
               <tr>
               	<td>
-				<h>Dear Vanderbilt University Libraries User,</h> <br/><br/>
                                  <h>@@message@@</h><br/><br/>
+                       		<strong>@@additional_info_2@@</strong>
+				<br /><br/>
                 </td>
               </tr>
               <tr>
@@ -49,18 +50,28 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 							<xsl:call-template name="mainTableStyleCss" /> <!-- style.xsl -->
 						</xsl:attribute>
 						<tr>
-							<th>@@title@@</th>
+							<th>@@call_number@@</th>
+                                                        <th>@@title@@</th>
 							<th>@@description@@</th>
-							<th>@@author@@</th>
 							<th>@@due_date@@</th>
 							<th>@@library@@</th>
 						</tr>
 
                 		<xsl:for-each select="notification_data/item_loans/item_loan">
 						<tr>
-							<td><xsl:value-of select="title"/></td>
-							<td><xsl:value-of select="description"/></td>
-							<td><xsl:value-of select="author"/></td>
+							<td>
+                                                               <xsl:variable name="altcallnum" select="alternative_call_number" />
+                                                               <xsl:choose>
+                                                                      <xsl:when test="string($altcallnum)">
+                                                                              <xsl:value-of select="alternative_call_number"/>
+                                                                       </xsl:when>
+                                                                       <xsl:otherwise>
+                                                                               <xsl:value-of select="call_number"/>
+                                                                       </xsl:otherwise>
+                                                                </xsl:choose>
+                                                        </td>  
+                                                        <td><xsl:value-of select="title"/></td>
+							<td><xsl:value-of select="barcode"/></td>
 							<td><xsl:value-of select="due_date"/></td>
 							<td><xsl:value-of select="library_name"/></td>
 
@@ -75,8 +86,6 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				<br />
 				@@additional_info_1@@
 			<br />
-			@@additional_info_2@@
-				<br />
 			<table>
 				<tr><td>@@sincerely@@</td></tr>
 				<tr><td>@@department@@</td></tr>
@@ -87,8 +96,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
         <!-- footer.xsl -->
         <xsl:call-template name="lastFooter" />
-         <xsl:call-template name="myAccount" />
-		<xsl:call-template name="contactUs" />
+ 
       </body>
     </html>
   </xsl:template>
