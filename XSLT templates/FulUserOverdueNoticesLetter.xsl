@@ -37,11 +37,6 @@
                   <br /><br/>
                 </td>
               </tr>
-              <tr>
-                <td>
-                  <b>@@loans@@</b>
-                </td>
-              </tr>
               
               <tr>
                 <td>
