@@ -36,6 +36,9 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				</tr>
 				</table>
 
+				<p><b>@@additional_info_2@@</b></p>
+					
+
 				<table cellpadding="5" class="listing">
 					<xsl:attribute name="style">
 						<xsl:call-template name="mainTableStyleCss" /> <!-- style.xsl -->
@@ -65,21 +68,21 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 									<xsl:for-each select="item_loans/overdue_and_lost_loan_notification_display">
 										<tr>
-                                                                                   <td> 
-                                                                                          <xsl:value-of select="physical_item_display_for_printing/call_number"/>
-                                                                                       <!--  <xsl:choose><xsl:variable name="altcallnum" 
-                                                                                                        select="physical_item_display_for_printing/item_alternativecall_number" />
-                                                                                         <xsl:when test="string($altcallnum)">
-                                                                                               <xsl:value-of select="physical_item_display_for_printing/item_alternativecall_number" />
-                                                                                         </xsl:when>
-                                                                                        <xsl:otherwise>  
-                                                                                              <xsl:value-of select="physical_item_display_for_printing/call_number"/>
-                                                                                        </xsl:otherwise>
-                                                                                        </xsl:choose>  -->
-                                                                                   </td>  
+                                            <td>
+                                            	<!-- <xsl:value-of select="physical_item_display_for_printing/call_number"/>  -->
+                                                <xsl:variable name="altcallnum" select="physical_item_display_for_printing/alternative_call_number" />    
+                                                <xsl:choose>
+                                                    <xsl:when test="string($altcallnum)">
+                                                         <xsl:value-of select="physical_item_display_for_printing/alternative_call_number" />
+                                                    </xsl:when>
+                                                    <xsl:otherwise>  
+                                                	    <xsl:value-of select="physical_item_display_for_printing/call_number"/>
+                                                    </xsl:otherwise>
+                                                </xsl:choose>  
+                                           </td>  
 
-                                                                                	<td><xsl:value-of select="item_loan/title"/> 
-                                                                                                 <br/><xsl:value-of select="item_loan/barcode"/></td>
+                                        	<td><xsl:value-of select="item_loan/title"/> 
+                                                <br/><xsl:value-of select="item_loan/barcode"/></td>
 											<td><xsl:value-of select="item_loan/loan_date"/></td>
 											<td><xsl:value-of select="item_loan/due_date"/></td>
 										<!-- 	<td><xsl:value-of select="physical_item_display_for_printing/library_name"/></td> -->
@@ -105,23 +108,17 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 							</td>
 						</tr>
 					</xsl:if>
-                </table>
+                    </table>
 
-					<br />
-					@@additional_info_1@@
-					<br />
-					@@additional_info_2@@
-					<br />
-
+                    <p>@@additional_info_1@@</p>
+					
 					<table>
 						<tr><td>@@sincerely@@</td></tr>
 						<tr><td>@@department@@</td></tr>
 					</table>
- 				<br />
+				<br />
 
 				<xsl:call-template name="lastFooter" /> <!-- footer.xsl -->
-                                <xsl:call-template name="contactUs" />
-                               <xsl:call-template name="myAccount" /><br/>
 
 			</body>
 	</html>
