@@ -50,8 +50,8 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 					<xsl:if test="notification_data/message='RECALL_CANCEL_NO_CHANGE'">
 						@@cancel_recall_no_date_change@@
 					</xsl:if>
-
 					<br/><br/>
+
                 </td>
               </tr>
 
@@ -92,9 +92,21 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
               </tr>
              </table>
 
-			<br />
+
+             <xsl:if test="contains( notification_data/message, 'RECALL' )">
+                       <br/>
+                        <table><tr>
+                            <td>A list of frequently asked questions regarding recalls is available at <a href="https://www.library.vanderbilt.edu/policies/recalls.php">https://www.library.vanderbilt.edu/policies/recalls.php</a>.
+                            </td>
+                        </tr></table>
+             </xsl:if>
+			
+
+            <!-- COVID Message --> 
+            <p><b>Please disregard this notice if you returned these items in the past 3 to 5 days. Your returns are in quarantine and will be marked returned at the correct date when quarantine is completed.</b></p>
+            
 			<table>
-				<tr><td>@@sincerely@@</td></tr>
+               	<tr><td>@@sincerely@@</td></tr>
 				<tr><td>@@department@@</td></tr>
 			</table>
 
@@ -102,8 +114,6 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
         </div>
 
                                 <xsl:call-template name="lastFooter" /> <!-- footer.xsl -->
-				<xsl:call-template name="contactUs" />
-                                <xsl:call-template name="myAccount" /><br/>
 	</body>
   </html>
 </xsl:template>
