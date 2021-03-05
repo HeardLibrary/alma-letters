@@ -3,10 +3,9 @@ Collection of VU customized Alma letter XLST templates
 
 ## Repo structure
 
-The repository structure is described below. 
+An index of the letter templates. 
 
 ```
-├── README.md                  : Description of this repository
 ├── Components      
 │   ├── header.xsl
 │   ├── footer.xsl
@@ -15,19 +14,24 @@ The repository structure is described below.
 │   ├── senderReceiver.xsl
 │   └── style.xsl
 └── XSLT templates
-    ├── ConversationLetter.xsl              :Vendor letter, Acqusition converstation with vendors 
-    ├── FineFeePaymentReceiptLetter.xsl     :Patron letter, Library Paymnent Receipt 
-    ├── FulBorrowingActivitiyLetter.xsl     :Patron letter, Current Loan Summary
-    ├── FulCancalRequestLetter.xsl          :Patron letter, Request Cancellation
-    ├── FulItemChangeDueDateLetter.xsl      :Patron letter, Loan status update letter 
-    ├── FulLoanReceiptLetter.xsl          
-    ├── FulLostLoanNotificationLetter.xsl    :Patron letter, Lost Items Bill 
-    ├── FulOverDueAndLostLoanNotificationLetter.xsl  :Patron letter, Overdue Notice
-    ├── FulPlaceOnHoldShelfLetter.xsl         :Patron letter, Library item available notice
-    ├── FulShortenedDueDateLetter.xsl          
-    ├── FulUserLoansCourtesyLetter.xsl         
-    ├── InterestedInLetter.xsl                :Patron letter, Library item of interest has arrived
-    ├── OrderList.xsl         
-    ├── OrderNowLetter.xsl         
-    └── POLineClaimLetter.xsl               :Vendor letter, Order Claim
+    ├── Fulfillment Letters 
+    │   ├── FineFeePaymentReceiptLetter.xsl     :patron letter, Library Paymnent Receipt 
+    │   ├── FulBorrowingActivitiyLetter.xsl     :Patron letter, Current Loan Summary
+    │   ├── FulCancalRequestLetter.xsl          :Patron letter, Request Cancellation
+    │   ├── FulItemChangeDueDateLetter.xsl      :Patron letter, Loan Status Update Notice, when item is being recalled, due date changed...
+    │   ├── FulLoanReceiptLetter.xsl          
+    │   ├── FulLostLoanNotificationLetter.xsl   :Patron letter, Lost Items Bill 
+    │   ├── FulOverDueAndLostLoanNotificationLetter.xsl  :Patron letter, Overdue Notice 1, 2, 3, send out when item pass due 7, 15, 23 days
+    │   ├── FulOverDueAndLostLoanLetter.xsl     :Patron letter, Lost Item Bill, when item pass due 30 days
+    │   ├── FulLostLoanLetter.xsl               :Patron letter, Lost Item Bill, when item is marked as lost 
+    │   ├── FulPlaceOnHoldShelfLetter.xsl       :Patron letter, Library item available notice
+    │   ├── FulShortenedDueDateLetter.xsl          
+    │   ├── FulUserLoansCourtesyLetter.xsl         
+    │   └── FulUserOverdueNotices.xsl             :Patron letter, Due Today Letter
+    ├── Acquisition Letters 
+        ├── ConversationLetter.xsl              :Vendor letter, Acqusition converstation with vendors 
+        ├── InterestedInLetter.xsl              :Patron letter, Library item of interest has arrived
+        ├── OrderList.xsl         
+        ├── OrderNowLetter.xsl         
+        └── POLineClaimLetter.xsl               :Vendor letter, Order Claim
 
