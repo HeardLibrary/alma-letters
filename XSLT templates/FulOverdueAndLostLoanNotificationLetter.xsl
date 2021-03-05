@@ -55,6 +55,9 @@
 					</table>
 				</xsl:for-each>
 				
+				<!-- COVID quarantien message --> 
+				<p><b>@@additional_info_1@@</b></p>
+
 				<!--  display library loan information table --> 
 				<table cellpadding="5" class="listing">
 					<xsl:attribute name="style">
@@ -129,7 +132,6 @@
 						</tr>
 					</xsl:if>
 				</table>
-				<p>@@additional_info_1@@</p>
 				
 				<p>@@additional_info_2@@</p>
 				
