@@ -28,7 +28,7 @@ An index of the letter templates.
     │   ├── FulShortenedDueDateLetter.xsl          
     │   ├── FulUserLoansCourtesyLetter.xsl         
     │   └── FulUserOverdueNotices.xsl             :Patron letter, Due Today Letter
-    ├── Acquisition Letters 
+    └── Acquisition Letters 
         ├── ConversationLetter.xsl              :Vendor letter, Acqusition converstation with vendors 
         ├── InterestedInLetter.xsl              :Patron letter, Library item of interest has arrived
         ├── OrderList.xsl         
